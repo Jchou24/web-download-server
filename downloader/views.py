@@ -33,6 +33,7 @@ else:
 @csrf_exempt   
 def download(request):
     if request.method == 'POST':
+        html_text = ""
         try:
             url = json.loads(request.body)['url']
             html_text = requests.get(url).text

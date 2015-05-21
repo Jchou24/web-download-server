@@ -87,7 +87,7 @@ LOCALES = (#http://stackoverflow.com/questions/7728977/django-how-to-add-chinese
     ('ja', u'日本語'),
 )
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
