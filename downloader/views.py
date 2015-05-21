@@ -10,13 +10,24 @@ def current_time():
     return dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 indentation = " "*12
-bold='\033[01m'
-underline='\033[04m'
+import platform
+if platform.system() == 'Windows':
+    bold=''
+    underline=''
 
-red='\033[31m'
-green='\033[32m'
-blue='\033[34m'
-reset='\033[0m'
+    red=''
+    green=''
+    blue=''
+    reset=''
+else:
+    bold='\033[01m'
+    underline='\033[04m'
+
+    red='\033[31m'
+    green='\033[32m'
+    blue='\033[34m'
+    reset='\033[0m'
+    
 @csrf_exempt   
 def download(request):
     if request.method == 'POST':
