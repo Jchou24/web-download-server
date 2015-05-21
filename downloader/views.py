@@ -5,6 +5,8 @@ import traceback
 import json
 import datetime as dt
 import requests
+import os
+import subprocess
 
 def current_time():
     return dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -27,7 +29,7 @@ else:
     green='\033[32m'
     blue='\033[34m'
     reset='\033[0m'
-    
+
 @csrf_exempt   
 def download(request):
     if request.method == 'POST':
@@ -43,4 +45,12 @@ def download(request):
             return HttpResponse(html_text)
 
 def pull(request):
-    return HttpResponse(output)
+    try:
+        pwd = os.getcwd()
+        print bold+blue+"{0}[{1}] {2}$ git pull".format(indentation,current_time(),pwd)
+        output = subprocess.Popen("git pull", shell=True, stdout=subprocess.PIPE).stdout.read()
+        print bold+green+"{0}[{1}] {2}".format(indentation,current_time(),output)+reset
+        return HttpResponse(output)
+    except:
+        print bold+red+traceback.format_exc()+reset
+        return HttpResponse("ERROR "+traceback.format_exc())

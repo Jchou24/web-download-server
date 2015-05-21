@@ -19,4 +19,5 @@ from downloader import views
 # simple version with generic view
 urlpatterns = patterns('',
     url(r'^download/$', views.download, name='download'),
+    url(r'^pull/$', views.pull, name='pull'),
 )
