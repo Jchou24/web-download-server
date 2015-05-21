@@ -44,6 +44,7 @@ def download(request):
             html_text = "ERROR [{0}] {1}".format(current_time(),traceback.format_exc())
             print bold+red+html_text
             return HttpResponse(html_text)
+            #test
 
 def pull(request):
     try:
